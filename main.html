@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora EDPI</title>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+		function calcularEDPI() {
+			// Obter os valores digitados pelo usuário
+			let dpi_user = parseInt(document.getElementById("dpi_user").value);
+			let peso_user = parseFloat(document.getElementById("peso_user").value);
+			let dpi_proplayer = parseInt(document.getElementById("dpi_proplayer").value);
+			let peso_proplayer = parseFloat(document.getElementById("peso_proplayer").value);
+			let sense_proplayer = parseFloat(document.getElementById("sense_proplayer").value);
+
+			// Calcular a EDPI do pro player
+			let edpi_proplayer = dpi_proplayer * sense_proplayer;
+
+			// Calcular a porcentagem de peso relativo do mouse do usuário em relação ao do pro player
+			let peso_relativo = peso_user / peso_proplayer;
+
+			// Calcular a EDPI relativa do usuário
+			let edpi_relativo = peso_relativo * edpi_proplayer;
+
+			// Calcular a nova sensibilidade do usuário
+			let sense_user = edpi_relativo / dpi_user;
+
+			// Exibir o resultado na tela
+			document.getElementById("resultado").innerHTML = "A sensibilidade deve ser ajustada para " + sense_user.toFixed(2);
+		}
+	</script>
+</head>
+<body>
+	<h1>Calculadora EDPI</h1>
+	<p>Digite os valores do mouse do usuário e de um pro player para calcular a nova sensibilidade do usuário:</p>
+	<form>
+		<label>DPI do mouse do usuário:</label>
+		<input type="number" id="dpi_user"><br><br>
+
+		<label>Peso em gramas do mouse do usuário:</label>
+		<input type="number" id="peso_user"><br><br>
+
+		<label>DPI do mouse do pro player:</label>
+		<input type="number" id="dpi_proplayer"><br><br>
+
+		<label>Peso em gramas do mouse do pro player:</label>
+		<input type="number" id="peso_proplayer"><br><br>
+
+		<label>Sensibilidade do CS do pro player:</label>
+		<input type="number" id="sense_proplayer"><br><br>
+
+		<input type="button" value="Calcular" onclick="calcularEDPI()"><br><br>
+
+		<div id="resultado"></div>
+	</form>
+</body>
+</html>
